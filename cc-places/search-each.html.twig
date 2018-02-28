@@ -1,0 +1,13 @@
+
+{# this file is shown on the search page #}
+
+<a href="{{ object.link }}" class="media-object place-search-each">
+    <div class="media-object-img">
+        <img src="{{ object.image[0] }}">
+    </div>
+    <div class="media-object-bd h2">{{ object.name }}</div>
+
+    {% for category in object.tagGroups.category.tags %}
+    <span style="background: {{ category.color }};" class="cc-tag cc-tag-{{ category.contrast }}">{{ category.name }}</span>
+    {% endfor %}
+</a>

@@ -1,0 +1,8 @@
+
+{# this file is included from collection.html.twig #}
+{# see what's inside object with {{ dump(object) }} #}
+
+<a href="{{ object.link }}" class="place-each" style="border-top: 10px solid {{ object.tagGroups.category.tags[0].color }};">
+    <img src="{{ object.image[0] }}" class="place-each-image">
+    <span class="place-each-name">{{ object.name }}</span>
+</a>

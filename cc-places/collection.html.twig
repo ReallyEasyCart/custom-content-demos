@@ -1,0 +1,68 @@
+
+{# Variables available: type, fields, objects #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(type) }} #}
+
+<h1>{{ type.name }} to see</h1>
+
+{#
+    Show a list of tag filtering links
+#}
+{% for group in type.tagGroups if group.enable_url_access %}
+    <p>
+        {% for tag in group.tags %}
+            <a href="{{ tag.link }}" style="background: {{ tag.color }};{% if tag.slug in filters[group.slug] %} border: 5px solid #CCC;{% endif %}" class="cc-tag cc-tag-{{ tag.contrast }}">{{ tag.name }}</a>
+
+        {% endfor %}
+    </p>
+{% endfor %}
+
+
+{#
+    Show multi select filters
+#}
+<h3 class="cc-form-toggle"><a data-toggle=".cc-form">Filter results</a></h3>
+<form action="{{ type.link }}" class="cc-form rec-form rec-form-dm-med" method="get">
+    {% for group in type.tagGroups if group.enable_filter %}
+        <p class="rec-form-field-row">
+            <label for="{{ group.slug }}">{{ group.name }}:</label>
+            <select name="{{ group.slug }}[]" id="{{ group.slug }}" multiple>
+                <option value="">~ optional ~</option>
+                {% for tag in group.tags %}
+                    <option{% if tag.slug in filters[group.slug] %} selected{% endif %} value="{{ tag.slug }}">{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+    {% endfor %}
+    <input class="cc-form-submit" type="submit" value="Filter">
+    <input class="cc-form-clear" type="button" onclick="window.location=this.form.action; return false;" value="Clear">
+</form>
+
+{# libs for select2 multi select #}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<script>
+jQuery('select[multiple]').select2({
+    width: '300px'
+});
+</script>
+
+
+<br>
+
+
+{#
+    Show all items found
+#}
+<div class="places-container pure-g">
+    {# list out objects inside this custom content type #}
+    {% for object in objects %}
+
+        <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-4">
+            {# to display each use the each.html.twig file in this same folder #}
+            {% include type.template_folder ~ 'each.html.twig' %}
+        </div>
+
+    {% else %}
+        <p class="pure-u-1"><em>None found</em></p>
+    {% endfor %}
+</div>
