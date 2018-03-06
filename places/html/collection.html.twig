@@ -1,16 +1,16 @@
 
-{# Variables available: type, fields, objects #}
-{# use the dump() helper to see inside any variable, e.g. {{ dump(type) }} #}
+{# Variables available: module, fields, objects, currentTag, msg, has_msg #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(module) }} #}
 
-<h1>{{ type.name }} to see</h1>
+<h1>{{ module.name }} to see</h1>
 
 {#
     Show a list of tag filtering links
 #}
-{% for group in type.tagGroups if group.enable_url_access %}
+{% for group in module.tagGroups if group.enable_url_access %}
     <p>
         {% for tag in group.tags %}
-            <a href="{{ tag.link }}" style="background: {{ tag.color }};{% if tag.slug in filters[group.slug] %} border: 5px solid #CCC;{% endif %}" class="cc-tag cc-tag-{{ tag.contrast }}">{{ tag.name }}</a>
+            <a href="{{ tag.link }}" style="background: {{ tag.color }};{% if tag.slug in filters[group.slug] %} border: 5px solid #CCC;{% endif %}" class="module-tag module-tag-{{ tag.contrast }}">{{ tag.name }}</a>
 
         {% endfor %}
     </p>
@@ -20,9 +20,9 @@
 {#
     Show multi select filters
 #}
-<h3 class="cc-form-toggle"><a data-toggle=".cc-form">Filter results</a></h3>
-<form action="{{ type.link }}" class="cc-form rec-form rec-form-dm-med" method="get">
-    {% for group in type.tagGroups if group.enable_filter %}
+<h3 class="module-form-toggle"><a data-toggle=".module-form">Filter results</a></h3>
+<form action="{{ module.link }}" class="module-form rec-form rec-form-dm-med" method="get">
+    {% for group in module.tagGroups if group.enable_filter %}
         <p class="rec-form-field-row">
             <label for="{{ group.slug }}">{{ group.name }}:</label>
             <select name="{{ group.slug }}[]" id="{{ group.slug }}" multiple>
@@ -33,8 +33,8 @@
             </select>
         </p>
     {% endfor %}
-    <input class="cc-form-submit" type="submit" value="Filter">
-    <input class="cc-form-clear" type="button" onclick="window.location=this.form.action; return false;" value="Clear">
+    <input class="module-form-submit" type="submit" value="Filter">
+    <input class="module-form-clear" type="button" onclick="window.location=this.form.action; return false;" value="Clear">
 </form>
 
 {# libs for select2 multi select #}
@@ -54,12 +54,12 @@ jQuery('select[multiple]').select2({
     Show all items found
 #}
 <div class="places-container pure-g">
-    {# list out objects inside this custom content type #}
+    {# list out objects inside this module #}
     {% for object in objects %}
 
         <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-4">
             {# to display each use the each.html.twig file in this same folder #}
-            {% include type.template_folder ~ 'each.html.twig' %}
+            {% include module.template_folder ~ 'html/each.html.twig' %}
         </div>
 
     {% else %}

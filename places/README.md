@@ -7,7 +7,7 @@ Based on: https://shakespeares-england.co.uk/places/things-to-do/
 
 Live demo: http://www.beta.recds12.co.uk/places.html
 
-Live demo admin: http://www.beta.recds12.co.uk/admin/admin.php?p=custom_content_places
+Live demo admin: http://www.beta.recds12.co.uk/admin/admin.php?p=module_places
 
 
 ### Front end demo:

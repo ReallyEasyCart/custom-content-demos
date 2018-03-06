@@ -8,6 +8,6 @@
     <div class="media-object-bd h2">{{ object.name }}</div>
 
     {% for category in object.tagGroups.category.tags %}
-    <span style="background: {{ category.color }};" class="cc-tag cc-tag-{{ category.contrast }}">{{ category.name }}</span>
+    <span style="background: {{ category.color }};" class="module-tag module-tag-{{ category.contrast }}">{{ category.name }}</span>
     {% endfor %}
 </a>

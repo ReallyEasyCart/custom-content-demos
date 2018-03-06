@@ -1,0 +1,184 @@
+
+/* ===== Listing places ===== */
+
+/* Places outer container */
+.places-container {
+    /*margin: 0 -0.5em;*/
+}
+
+/* Each place */
+.place-each,
+.place-each-image,
+.place-each-name {
+    display: block;
+}
+
+.place-each {
+    margin: 0 0.5em 1em;
+    text-decoration: none;
+}
+.place-each-name {
+    background: #d18152;
+    color: #FFF;
+    padding: 1em;
+    text-align: center;
+    font-family: Times;
+    font-size: 18px;
+    font-style: italic;
+    border-bottom-left-radius: .5em;
+    border-bottom-right-radius: .5em;
+}
+.place-each:hover .place-each-name {
+    background: #993729;
+}
+
+/* tags */
+
+.module-tag {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 3px 6px;
+    text-decoration: none;
+    font-family: serif;
+    font-style: italic;
+    font-size: small;
+}
+.module-tag-light { color: #FFF; }
+.module-tag-dark { color: #000; }
+
+/* filters */
+
+.module-form {
+    display: none;
+    background: #516782;
+    color: #FFF;
+    padding: 1em;
+}
+.module-form.is-open {
+    display: block;
+}
+input[type="submit"].module-form-submit {
+    background: #172835;
+    border-color: #172835;
+}
+input[type="button"].module-form-clear {
+    background: transparent;
+    border-color: transparent;
+}
+.module-form-toggle { margin: 0; }
+.module-form-toggle a {
+    background: #172835;
+    color: #FFF;
+    display: block;
+    padding: 1em;
+}
+.module-form-toggle a:after {
+    content: "\f067";
+    color: #FFF;
+    float: right;
+    font-family: FontAwesome;
+    transition: transform .5s;
+}
+.module-form-toggle .toggle-el-is-open:after {
+    transform: rotate(-45deg);
+}
+
+/* select2 used on filters,minor tweaks to it's default style */
+.module-form .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #516782;
+    border-color: #516782;
+}
+
+/* ===== Search results for places ===== */
+.place-search-each {
+    display: block;
+    background: #EEE;
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+}
+.place-search-each .media-object-bd {
+    padding: 1em 0;
+    font-family: Times;
+    /*font-size: 18px;*/
+    font-style: italic;
+}
+.place-search-each img {
+    max-width: 200px;
+}
+
+
+/* ===== Show a specific place ===== */
+
+/* helper to take an element to edge of #main ;D
+.push-out {
+    margin: 0 -15px;
+} */
+
+/* place full page header */
+.place-info {}
+.place-info header {
+    background: #993729;
+    padding: 1px 2em 2em;
+    text-align: center;
+}
+.place-info header,
+.place-info h1,
+.place-info header a {
+    color: #FFF;
+}
+.place-info h1 {
+    border-bottom: 1px solid #FFF;
+    padding: 0.67em 0;
+    font-family: Times;
+    font-style: italic;
+}
+.place-info header strong {
+    display: block;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+/* footer for each place to show date created */
+.place-info footer {
+    color: #666;
+    padding: 1em 0;
+}
+
+/* image gallery (uses owl) */
+.place-image-gallery {
+    height: 320px;
+    display: block;
+    transition: height .5s;
+}
+.place-image-gallery img {
+    max-height: 320px;
+}
+
+/* tabbed main content */
+.place-tabs {
+    padding: 0;
+}
+.place-tabs .ui-tabs-nav {
+    background: #a1b4c6;
+    padding: 1em;
+    /*margin: 0 -15px;*/
+    border-radius: 0;
+}
+.place-tabs .ui-tabs-nav li {
+    background: transparent;
+    border: none;
+}
+.place-tabs .ui-tabs-nav a {
+    color: #FFF;
+    text-transform: uppercase;
+}
+
+.place-tabs .ui-tabs-nav .ui-state-active a {
+    font-weight: bold;
+    border-bottom: 2px solid #FFF;
+}
+
+.place-tabs .ui-tabs-nav li:hover a {
+    font-weight: bold;
+}

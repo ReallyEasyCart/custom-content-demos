@@ -79,4 +79,43 @@
         <p>Created: {{ object.created_at | date_ago }}</p>
     </footer>
 
+    {{ msg }}
+
+    <!-- reviews -->
+    <h2>Reviews</h2>
+    <p>Current rating: {{ object.userData.entries.rating | avg('value') | round }} <i class="fa fa-star"></i></p>
+    <div>
+        {% for rating in object.userData.entries.rating %}
+        <div>
+            {{ rating.value }} <i class="fa fa-star"></i>
+            <small>: {{ rating.message ? rating.message : '<em>no added comment</em>' }}
+                {% if rating.isCurrentSession %}<strong>(your review)</strong>{% endif %}
+            </small>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if 'rating' not in object.userData.already_entered %}
+    <form method="POST" action="{{ object.userData.endpoint }}">
+
+        <input type="hidden" name="key" value="rating">
+
+            {% for index in [1,2,3,4,5] %}
+                <label>
+                    <input type="radio" name="value" value="{{ index }}">
+                    {{ index }} <i class="fa fa-star"></i>
+                </label>
+            {% endfor %}
+
+        <p>
+            <textarea name="message" placeholder="Any comments?"></textarea>
+        </p>
+
+        <p>
+            <input type="submit" value="Vote">
+        </p>
+
+    </form>
+    {% endif %}
+
 </div>
