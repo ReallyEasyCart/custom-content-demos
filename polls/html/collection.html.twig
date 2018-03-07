@@ -1,0 +1,15 @@
+
+{# Variables available: module, fields, objects #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(module) }} #}
+
+<h1>{{ module.name }} Collection</h1>
+
+<ul>
+    {# list out objects inside this module #}
+    {% for object in objects %}
+
+        {# to display each use the each.html.twig file in this same folder #}
+        {% include module.template_folder ~ 'html/each.html.twig' %}
+
+    {% endfor %}
+</ul>

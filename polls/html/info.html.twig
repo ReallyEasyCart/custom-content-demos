@@ -1,0 +1,44 @@
+
+<h1>{{ object.name }}</h1>
+<p>Created: {{ object.created_at | date_ago }}</p>
+
+{{ msg }}
+
+{% if 'poll' in object.userData.already_entered %}
+
+    {% set entries = object.userData.entries.poll %}
+    {% set total = entries | count %}
+    {% set max = entries | group_by('value') | sub_count | max %}
+    <div class="poll-container">
+    
+        {% for answer in object.answer %}
+            {% set matching = entries | where('value', loop.index) | count %}
+            {% set percent = (100 / total * matching) | round ~ '%' %}
+            <span class="poll-bar {{ matching == max ? 'poll-bar-max' : '' }}" style="width: {{ percent }}" title="{{ matching }} vote(s)">
+                <strong>{{ percent }}</strong> {{ answer }}
+            </span>
+        {% endfor %}
+
+        <small>{{ total }} votes</small>
+    </div>
+
+{% else %}
+    <form method="POST" action="{{ object.userData.endpoint }}">
+
+        <input type="hidden" name="key" value="poll">
+
+        <div class="poll-container">
+            {% for answer in object.answer %}
+                <span class="poll-select">
+                    <label>
+                        <input type="radio" name="value" value="{{ loop.index }}">
+                        {{ answer }}
+                    </label>
+                </span>
+            {% endfor %}
+        </ol>
+
+        <input type="submit" value="Vote">
+
+    </form>
+{% endif %}
