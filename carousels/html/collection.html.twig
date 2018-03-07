@@ -1,0 +1,17 @@
+
+{# Variables available: module, fields, objects, currentTag, msg, has_msg #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(module) }} #}
+
+<h1>{{ module.name }} Collection</h1>
+
+<div>
+    {# list out objects inside this module #}
+    {% for object in objects %}
+
+        <h3>{{ object.name }} carousel</h3>
+
+        {# to display each use the each.html.twig file in this same folder #}
+        {% include module.template_folder ~ 'html/each.html.twig' %}
+
+    {% endfor %}
+</div>

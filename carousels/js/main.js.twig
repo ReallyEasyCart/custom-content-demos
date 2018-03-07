@@ -1,0 +1,17 @@
+
+// add owl css & js resources
+REC.load({
+    resources: [
+        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js'
+    ]
+}, function ($) {
+
+    // init owl carousel
+    $('.carousel-module').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 2000
+    });
+
+});
