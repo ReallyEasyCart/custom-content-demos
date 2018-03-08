@@ -1,0 +1,29 @@
+
+<div class="team-member">
+    
+    <img src="{{ object.avatar }}">
+
+    <div class="team-member-info">
+
+        <div class="team-member-info-core">
+            <h2>{{ object.name }}</h2>
+            <p class="team-member-job-titles">{{ object.job_role | join('<br>') }}</p>
+        </div>
+
+        {{ object.description }}
+        
+        {% if object.main_phone %}
+            <p>t: {{ object.main_phone }}</p>
+        {% endif %}
+        
+        {% if object.mobile_phone %}
+            <p>m: {{ object.mobile_phone }}</p>
+        {% endif %}
+        
+        {% if object.email %}
+            <p>e: {{ object.email }}</p>
+        {% endif %}
+
+    </div>
+
+</div>
