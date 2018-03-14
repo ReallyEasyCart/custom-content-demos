@@ -1,0 +1,11 @@
+
+{# this file is included from collection.html.twig #}
+{# see what's inside object with {{ dump(object) }} #}
+<div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 recipe-collection-wrapper">
+    <div class="recipe-collection-each">
+        <a href="{{ object.link }}" class="recipe-collection-each-link">
+            <img src="{{ object.image }}" class="recipe-collection-each-image">
+            <span class="recipe-collection-each-name">{{ object.name }}</span>
+        </a>
+    </div>
+</div>

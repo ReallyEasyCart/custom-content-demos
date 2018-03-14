@@ -1,0 +1,29 @@
+
+{# Variables available: module, fields, objects, currentTag, msg, has_msg #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(module) }} #}
+
+<h1>{{ module.name }}</h1>
+<p>{{ module.description }}</p>
+
+{#
+    Show a list of tag filtering links
+#}
+{% for group in module.tagGroups if group.enable_url_access %}
+    <p>
+        <a href="/recipes" style="background: #CCC;" class="module-tag module-tag-dark">All</a>
+        {% for tag in group.tags %}
+            <a href="{{ tag.link }}" style="background: {{ tag.color }};{% if tag.slug in filters[group.slug] %} border: 5px solid {{ tag.color }};{% endif %}" class="module-tag module-tag-{{ tag.contrast }}">{{ tag.name }}</a>
+
+        {% endfor %}
+    </p>
+{% endfor %}
+
+<div class="recipe-collection-container pure-g">
+    {# list out objects inside this module #}
+    {% for object in objects %}
+
+        {# to display each use the each.html.twig file in this same folder #}
+        {% include module.template_folder ~ 'html/each.html.twig' %}
+
+    {% endfor %}
+</div>
