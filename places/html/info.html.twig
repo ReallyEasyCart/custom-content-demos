@@ -35,7 +35,7 @@
     <script>
     jQuery(window).load(function () {
         jQuery('.owl-carousel').owlCarousel({
-            //loop: true,
+            loop: jQuery('.owl-item').length > 2,
             autoWidth: true,
             autoplay: true,
             autoplayTimeout: 2000
