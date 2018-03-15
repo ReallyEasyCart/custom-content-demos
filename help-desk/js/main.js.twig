@@ -1,0 +1,24 @@
+
+// 
+// Help desk
+// 
+REC.load({
+    resources: [
+        'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js'
+    ]
+}, function ($) {
+
+    // Autocomplete for articles
+    $('#article_finder').select2({
+        placeholder: 'Search for answers',
+        allowClear: true,
+        width: '400px'
+    }).on('select2:select', function () {
+        
+        // redirect to selected article
+        window.location.href = $(this).val();
+    });
+
+});
+

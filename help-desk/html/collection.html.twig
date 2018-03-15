@@ -1,0 +1,54 @@
+
+{# This file lists all items in a module collection #}
+{# variables available: objects, module, filters, currentTag, msg, has_msg #}
+{# use the dump() helper to see inside any variable, e.g. {{ dump(module) }} #}
+
+<div class="help-desk-header">
+
+    <h1>Help Desk</h1>
+
+    {# Autocomplete #}
+    <div class="help-desk-search-container">
+        <select name="article_finder" id="article_finder">
+            <option></option>
+            {% for object in objects %}
+                <option value="{{ object.link }}">{{ object.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {# Tags #}
+    {% for group in module.tagGroups if group.enable_url_access %}
+        <p class="help-desk-tags-container">
+            
+            {% for tag in group.tags %}
+                <a href="{{ tag.link }}" style="background: {{ tag.color }};" class="help-desk-tag help-desk-tag-{{ tag.contrast }}{% if tag.slug in filters[group.slug] %} help-desk-tag-selected{% endif %}">{{ tag.name }}</a>
+            {% endfor %}
+
+            {% if filters is not empty %}
+                <a href="{{ module.link }}" style="background: #CCC;" class="help-desk-tag help-desk-tag-dark">Return to all</a>
+            {% endif %}
+
+        </p>
+    {% endfor %}
+
+</div>
+
+{# if a tag is selected, show a bar of it's colour to highlight it's filter #}
+{% if currentTag %}
+    <div class="help-desk-tag-bar" style="background: {{ currentTag.color }}"></div>
+{% endif %}
+
+<div class="pure-g">
+    {# list out objects inside this module #}
+    {% for object in objects %}
+
+        <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-4">
+
+            {# to display each use the each.html.twig file in this same folder #}
+            {% include module.template_folder ~ 'html/each.html.twig' %}
+
+        </div>
+
+    {% endfor %}
+</div>

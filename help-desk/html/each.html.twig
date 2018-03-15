@@ -1,0 +1,12 @@
+
+{# This file is included from collection.html.twig , it shows each item in a collection #}
+{# variables available: object, module, filters, currentTag, msg, has_msg #}
+{# see what's inside object with {{ dump(object) }} #}
+
+<a href="{{ object.link }}" class="help-desk-article">
+
+    <h2>{{ object.name }}</h2>
+
+    <small>Published: {{ object.created_at | date_ago }}</small>
+
+</a>

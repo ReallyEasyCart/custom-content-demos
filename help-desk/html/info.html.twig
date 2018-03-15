@@ -1,0 +1,30 @@
+
+{# This file shows full information on a specific object, e.g. if you go direct to it via the url #}
+{# variables available: object, module #}
+{# see what's inside object with {{ dump(object) }} #}
+
+<div class="help-desk-full-page">
+
+    {% set defaultTag = object.tagGroups.category.tags | first %}
+
+    <p class="help-desk-tags-container">
+
+        <a href="{{ defaultTag.link }}" style="background: {{ defaultTag.color }};" class="help-desk-tag help-desk-tag-{{ defaultTag.contrast }}{% if defaultTag.slug in filters[group.slug] %} help-desk-tag-selected{% endif %}">{{ defaultTag.name }}</a>
+        
+        <a href="{{ module.link }}" style="background: #CCC;" class="help-desk-tag help-desk-tag-dark help-desk-tag-all">Return to all</a>
+
+    </p>
+    <div class="help-desk-tag-bar" style="background: {{ defaultTag.color }}"></div>
+
+    <div class="help-desk-header">
+
+        <h1>{{ object.name }}</h1>
+        <p>Published: {{ object.created_at | date_ago }}</p>
+        
+    </div>
+
+    <div class="help-desk-article-content">
+        {{ object.article }}
+    </div>
+
+</div>
