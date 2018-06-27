@@ -1,0 +1,46 @@
+
+{# This file shows full information on a specific object, e.g. if you go direct to it via the url #}
+{# variables available: object, module #}
+{# see what's inside object with {{ dump(object) }} #}
+
+<h1>{{ object.name }}</h1>
+
+<div id="course-booking-form">
+    {{ add_to_cart_form(object.course) }}
+
+    <h3>Delegate booking</h3>
+    <div id="delegate-booking-container">
+        <div class="delegate">
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+            <br>
+            <label for="nights">No. of nights</label>
+            <input type="number" name="nights" min="0" max="10" value="0">
+            <br>
+            <div class="start-date-container" style="display: none;">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date">
+            </div>
+        </div>
+    </div>
+    <button class="generated_button" id="add-delegate">Add delgate</button>
+    <br>
+    <br>
+    <button class="generated_button" id="submit-course-signup">Send</button>
+
+    <script id="delegate-template" type="text/x-delegate-template">
+        <hr>
+        <div class="delegate">
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+            <br>
+            <label for="nights">No. of nights</label>
+            <input type="number" name="nights" min="0" max="10" value="0">
+            <br>
+            <div class="start-date-container" style="display: none;>
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date">
+            </div>
+        </div>
+    </script>
+</div>
