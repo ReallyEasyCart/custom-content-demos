@@ -1,0 +1,59 @@
+jQuery(function ($) {
+
+    if ($('#course-booking-form').length <= 0) return;
+
+    // Add Delegate
+    $('body').on('click', 'button#add-delegate', function (e) {
+        // Prevent Default
+        e.preventDefault();
+
+        // Grab the HTML from the template
+        var html = $('#delegate-template').html();
+
+        // Append to Delegate Container
+        $('#delegate-booking-container').append(html);
+    });
+
+    // Show "Start Date" field
+    $('#delegate-booking-container').on('change', 'input[name="nights"]', function (e) {
+        // Assign variables for easy use
+        var $this = $(this),
+            startDate = $this.parents('div.delegate').find('div.start-date-container');
+
+        // If the value of "No. of nights" is greater than 0, show "Start Date" else hide it
+        if ($this.val() > 0) {
+            startDate.show();
+        } else {
+            startDate.hide();
+        }
+    });
+
+    // Submit
+    $('#submit-course-signup').click(function (e) {
+        e.preventDefault();
+
+        var qty = 0,
+            extraData = [];
+
+        $('.delegate').each(function (index, delegate) {
+            qty += 1;
+
+            var element = $(delegate),
+                name = element.find('input[name="name"]').val(),
+                nights = element.find('input[name="nights"]').val(),
+                startDate = element.find('input[name="start_date"]').val();
+
+            var data = name + ' - ' + nights + ' Nights';
+            if (startDate) {
+                data += ' - Starting ' + startDate;
+            }
+
+            extraData.push(data);
+        });
+
+        $('form.generated_add-to-cart-form').find('input[name="quantity"]').val(qty);
+        $('form.generated_add-to-cart-form').find('input[name="extra_data"]').val(extraData.join(', '));
+        $('form.generated_add-to-cart-form').submit();
+    });
+
+});
