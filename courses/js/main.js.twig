@@ -35,10 +35,10 @@ jQuery(function ($) {
         var qty = 0,
             extraData = [];
 
-        $('.delegate').each(function (i, v) {
+        $('.delegate').each(function (index, delegate) {
             qty += 1;
 
-            var element = $(v),
+            var element = $(delegate),
                 name = element.find('input[name="name"]').val(),
                 nights = element.find('input[name="nights"]').val(),
                 startDate = element.find('input[name="start_date"]').val();
